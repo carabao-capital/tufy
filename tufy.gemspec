@@ -1,17 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'tufy/version'
-
+require 'tufy/version' 
 Gem::Specification.new do |spec|
   spec.name          = "tufy"
   spec.version       = Tufy::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
+  spec.authors       = ["Neil Marion dela Cruz"]
+  spec.email         = ["nmfdelacruz@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Parses data into Transunion-specific data format}
+  spec.description   = %q{Parses data into Transunion-specific data format}
+  spec.homepage      = "https://github.com/carabao-capital/tufy"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
