@@ -9,5 +9,9 @@ module Tufy
         raise Tufy::Errors::RequiredDataMissing, required_key.to_s unless raw_data.key? required_key
       end
     end
+
+    def self.transform_date(date)
+      date.strftime("%d%m%Y")
+    end
   end
 end
