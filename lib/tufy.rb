@@ -12,6 +12,10 @@ require "tufy/build_contact_number_segment"
 require "tufy/build_email_address_segment"
 require "tufy/build_account_segment"
 require "tufy/build_end_of_subject_segment"
+require "tufy/transform"
 
 module Tufy
+  def self.transform(raw_data)
+    Transform.execute(raw_data: raw_data)
+  end
 end
