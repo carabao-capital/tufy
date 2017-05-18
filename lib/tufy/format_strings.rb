@@ -3,5 +3,7 @@ module Tufy
     F25TS = "%-25.25s" # Fixed 25-character String with Trailing Spaces
     F26TS = "%-26.26s" # Fixed 26-character String with Trailing Spaces
     F10TS = "%-10.10s" # Fixed 10-character String with Trailing Spaces
+
+    F2TS = "%02d" # Fixed 2-character String with Leading Zeroes
   end
 end
