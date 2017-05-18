@@ -9,6 +9,7 @@ require "tufy/build_name_segment"
 require "tufy/build_id_segment"
 require "tufy/build_address_segment"
 require "tufy/build_contact_number_segment"
+require "tufy/build_email_address_segment"
 
 module Tufy
 end
