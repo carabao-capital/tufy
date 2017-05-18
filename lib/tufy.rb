@@ -11,6 +11,7 @@ require "tufy/build_address_segment"
 require "tufy/build_contact_number_segment"
 require "tufy/build_email_address_segment"
 require "tufy/build_account_segment"
+require "tufy/build_end_of_subject_segment"
 
 module Tufy
 end
