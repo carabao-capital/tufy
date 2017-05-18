@@ -13,5 +13,9 @@ module Tufy
     def self.transform_date(date)
       date.strftime("%d%m%Y")
     end
+
+    def self.remove_special_characters(string)
+      string.gsub(/[^0-9A-Za-z]/, '')
+    end
   end
 end
