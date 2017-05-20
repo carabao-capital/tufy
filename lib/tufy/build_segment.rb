@@ -11,7 +11,10 @@ module Tufy
     end
 
     def self.transform_date(date)
-      date.strftime("%d%m%Y")
+      # TODO: Remove conditional
+      # after data-integrity issues
+      # have been resolved
+      date ? date.strftime("%d%m%Y") : "00000000"
     end
 
     def self.remove_special_characters(string)
