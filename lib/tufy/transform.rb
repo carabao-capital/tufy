@@ -1,13 +1,8 @@
 module Tufy
   class Transform
     include LightService::Organizer
-    include LightService::Action
 
-    expects :raw_data
-
-    executed do |ctx|
-      ctx[:transformed_data] = ""
-
+    def self.execute(ctx)
       with(ctx).reduce(
         BuildHeaderSegment,
         BuildNameSegment,
