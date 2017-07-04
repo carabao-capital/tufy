@@ -155,6 +155,15 @@ module Tufy
       YES = "Y"
       NO = "N"
       NOT_APPLICABLE = "A"
+
+      # TU Code for Number of Days Past Due
+      PAST_DUE_CODE_000 = '000'
+      PAST_DUE_CODE_001 = '001'
+      PAST_DUE_CODE_030 = '030'
+      PAST_DUE_CODE_060 = '060'
+      PAST_DUE_CODE_090 = '090'
+      PAST_DUE_CODE_120 = '120'
+      PAST_DUE_CODE_150 = '150'
     end
   end
 end
