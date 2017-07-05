@@ -3,6 +3,7 @@ module Tufy
     include LightService::Organizer
 
     def self.execute(ctx)
+      ctx[:transformed_data] = ''
       with(ctx).reduce(
         BuildHeaderSegment,
         BuildNameSegment,
@@ -12,8 +13,6 @@ module Tufy
         BuildAccountSegment,
         BuildEndOfSubjectSegment,
       )
-
-      ctx[:transformed_data]
     end
   end
 end
