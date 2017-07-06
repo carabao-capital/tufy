@@ -86,7 +86,7 @@ module Tufy
         Constants::CASH_ADVANCE_BALANCE_TAG +
           FormatStrings::F2TS % raw_data[:cash_advance_balance].to_i.to_s.size + raw_data[:cash_advance_balance].to_i.to_s +
         Constants::NUMBER_OF_DAYS_PAST_DUE_TAG +
-          FormatStrings::F2TS % (FormatStrings::F3TS % raw_data[:number_of_days_past_due]).size + FormatStrings::F3TS % raw_data[:number_of_days_past_due] +
+          '03' + raw_data[:number_of_days_past_due].to_s +
         Constants::PAST_DUE_AMOUNT_TAG +
           FormatStrings::F2TS % raw_data[:past_due_amount].to_i.to_s.size + raw_data[:past_due_amount].to_i.to_s +
         Constants::INSTALLMENT_AMOUNT_TAG +
