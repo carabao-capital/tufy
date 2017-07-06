@@ -36,6 +36,17 @@ module Tufy
       ctx.transformed_data = ctx.transformed_data + transform(ctx).upcase
     end
 
+    def self.tu_past_due_code(days_past_due)
+      case days_past_due
+      when 0
+        0
+      when (1..30)
+        1
+      else
+        ((days_past_due - 1) / 30) * 30
+      end
+    end
+
     private
 
     def self.transform(ctx)
@@ -155,15 +166,6 @@ module Tufy
       YES = "Y"
       NO = "N"
       NOT_APPLICABLE = "A"
-
-      # TU Code for Number of Days Past Due
-      PAST_DUE_CODE_000 = '000'
-      PAST_DUE_CODE_001 = '001'
-      PAST_DUE_CODE_030 = '030'
-      PAST_DUE_CODE_060 = '060'
-      PAST_DUE_CODE_090 = '090'
-      PAST_DUE_CODE_120 = '120'
-      PAST_DUE_CODE_150 = '150'
     end
   end
 end
