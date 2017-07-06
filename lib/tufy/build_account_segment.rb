@@ -36,7 +36,7 @@ module Tufy
       ctx.transformed_data = ctx.transformed_data + transform(ctx).upcase
     end
 
-    def self.tu_past_due_code(days_past_due)
+    def self.past_due_code(days_past_due)
       case days_past_due
       when 0
         0
