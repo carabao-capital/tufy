@@ -1,11 +1,10 @@
 module Tufy
-  class Transform
+  class BuildRecord
     include LightService::Organizer
 
     def self.execute(ctx)
       ctx[:transformed_data] = ''
-      with(ctx).reduce(
-        BuildHeaderSegment,
+      ctx = with(ctx).reduce(
         BuildNameSegment,
         BuildAddressSegment,
         BuildContactNumberSegment,
@@ -13,6 +12,8 @@ module Tufy
         BuildAccountSegment,
         BuildEndOfSubjectSegment,
       )
+      ctx[:transformed_data]
     end
   end
 end
+

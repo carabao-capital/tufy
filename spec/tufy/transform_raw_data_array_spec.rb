@@ -1,10 +1,11 @@
 require "spec_helper"
 
 module Tufy
-  describe Transform, ".execute" do
+  describe TransformRawDataArray, ".execute" do
     let(:ctx) do
       {
-        raw_data: {},
+        header_data: {},
+        raw_data_array: [{}],
       }
     end
 
@@ -12,12 +13,7 @@ module Tufy
     it "executes the actions in order" do
       actions = [
         BuildHeaderSegment,
-        BuildNameSegment,
-        BuildAddressSegment,
-        BuildContactNumberSegment,
-        BuildEmailAddressSegment,
-        BuildAccountSegment,
-        BuildEndOfSubjectSegment,
+        BuildRecords,
       ]
 
       actions.each do |action|

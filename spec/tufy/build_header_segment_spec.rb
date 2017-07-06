@@ -7,7 +7,7 @@ module Tufy
     let(:user_id) { "BB030" }
     let(:date_today) { Date.today }
 
-    let(:raw_data) do
+    let(:header_data) do
       {
         member_reference_number: member_reference_number,
         processor_name: processor_name,
@@ -17,7 +17,7 @@ module Tufy
 
     let(:ctx) do
       {
-        raw_data: raw_data,
+        header_data: header_data,
         transformed_data: "",
       }
     end
@@ -42,7 +42,7 @@ module Tufy
     context "with error" do
       BuildHeaderSegment::REQUIRED_KEYS.each do |required_key|
         before(:each) do
-          raw_data.delete(required_key)
+          header_data.delete(required_key)
         end
 
         it "executes the action" do

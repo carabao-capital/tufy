@@ -1,6 +1,6 @@
 module Tufy
   class BuildHeaderSegment < BuildSegment
-    expects :raw_data
+    expects :header_data
     promises :transformed_data
 
     REQUIRED_KEYS = [
@@ -10,7 +10,7 @@ module Tufy
     ]
 
     executed do |ctx|
-      validate_presence_of_required_keys(ctx.raw_data, REQUIRED_KEYS)
+      validate_presence_of_required_keys(ctx.header_data, REQUIRED_KEYS)
       ctx.transformed_data = ctx.transformed_data + transform(ctx).upcase
     end
 
@@ -19,9 +19,9 @@ module Tufy
     def self.transform(ctx)
       Constants::SEGMENT_TAG + # Segment Tag (Required)
         Constants::TUDF_VERSION + # Version Tag (Required)
-        "#{FormatStrings::F25TS % ctx.raw_data[:member_reference_number]}" + # Member Reference Number (Required)
-        "#{FormatStrings::F26TS % ctx.raw_data[:processor_name].upcase}" + # Member Processor Name (Required)
-        "#{FormatStrings::F10TS % ctx.raw_data[:user_id].upcase}" + # User ID (Required)
+        "#{FormatStrings::F25TS % ctx.header_data[:member_reference_number]}" + # Member Reference Number (Required)
+        "#{FormatStrings::F26TS % ctx.header_data[:processor_name].upcase}" + # Member Processor Name (Required)
+        "#{FormatStrings::F10TS % ctx.header_data[:user_id].upcase}" + # User ID (Required)
         "#{transform_date(Date.today)}" + # Reported Date (Required)
         Constants::FILLER # Filler (Required)
     end
