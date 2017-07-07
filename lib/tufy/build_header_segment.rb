@@ -4,7 +4,6 @@ module Tufy
     promises :transformed_data
 
     REQUIRED_KEYS = [
-      :member_reference_number,
       :processor_name,
       :user_id
     ]
@@ -19,7 +18,7 @@ module Tufy
     def self.transform(ctx)
       Constants::SEGMENT_TAG + # Segment Tag (Required)
         Constants::TUDF_VERSION + # Version Tag (Required)
-        "#{FormatStrings::F25TS % ctx.header_data[:member_reference_number]}" + # Member Reference Number (Required)
+        "#{FormatStrings::F25TS % Time.now.to_i.to_s}" + # Member Reference Number (Required)
         "#{FormatStrings::F26TS % ctx.header_data[:processor_name].upcase}" + # Member Processor Name (Required)
         "#{FormatStrings::F10TS % ctx.header_data[:user_id].upcase}" + # User ID (Required)
         "#{transform_date(Date.today)}" + # Reported Date (Required)

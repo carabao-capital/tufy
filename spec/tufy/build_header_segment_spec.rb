@@ -32,6 +32,10 @@ module Tufy
         BuildHeaderSegment::Constants::FILLER  # Filler (Required)
     end
 
+    before :each do
+      allow(Time).to receive_message_chain(:now, :to_i, :to_s).and_return(member_reference_number)
+    end
+
     context "no error" do
       it "executes the action" do
         result = described_class.execute(ctx)
