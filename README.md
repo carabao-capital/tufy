@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/tufy.png)](https://badge.fury.io/rb/tufy)
+
 # Tufy
 
 "Pronounced as T-U-fy"
@@ -13,15 +15,20 @@ $ gem install tufy
 ```
 
 ### Usage
+#### 1. Tufy.transform_raw_data_array(header_data, raw_data_array)
+
 
 ```ruby
-transform_data_result =
-    Tufy.transform(
+transform_raw_data_array_result =
+    Tufy.transform_raw_data_array(
+      {
+        # for the header segment
+        member_reference_number: member_reference_number,
+        processor_name: processor_name,
+        user_id: user_id,
+      },
+      [
         {
-          # for the header segment
-          member_reference_number: member_reference_number,
-          processor_name: processor_name,
-          user_id: user_id,
           # for the name segment
           first_name: first_name,
           last_name: last_name,
@@ -66,13 +73,64 @@ transform_data_result =
           legal_action: legal_action,
           partial_payment: partial_payment,
           fresh_cash_advance: fresh_cash_advance,
-        )
+        },
+      ]
+    )
 ```
 
-Get the transformed data
+#### 2. Tufy.transform_raw_data(raw_data)
+
 
 ```ruby
-  transformed_data_result[:transformed_data]
+transform_raw_data_result =
+    Tufy.transform_raw_data(
+      {
+        # for the name segment
+        first_name: first_name,
+        last_name: last_name,
+        civil_status: civil_status,
+        date_of_birth: date_of_birth,
+        gender: gender,
+        ac_holder_type: ac_holder_type,
+        # for the id segment
+        id_number: id_number,
+        id_type: id_type,
+        # for the address segment
+        address_line_1: address_line_1,
+        address_line_2: address_line_2,
+        address_type: address_type,
+        # for contact number segment
+        contact_number: contact_number,
+        contact_number_format: contact_number_format,
+        # for email address segment
+        email_address: email_address,
+        # for account segment
+        account_number: account_number,
+        restructured_account_number: restructured_account_number,
+        account_status: account_status,
+        account_type: account_type,
+        currency_code: currency_code,
+        opened_date: opened_date,
+        payment_amount: payment_amount,
+        closed_date: closed_date,
+        credit_limit_or_loan_amount: credit_limit_or_loan_amount,
+        shared_by: shared_by,
+        outstanding_balance: outstanding_balance,
+        interest_and_fees: interest_and_fees,
+        unbilled_balance: unbilled_balance,
+        cash_advance_balance: cash_advance_balance,
+        number_of_days_past_due: number_of_days_past_due,
+        past_due_amount: past_due_amount,
+        installment_amount: installment_amount,
+        number_of_installments: number_of_installments,
+        payment_frequency: payment_frequency,
+        expiry_date: expiry_date,
+        consumer_or_commercial: consumer_or_commercial,
+        legal_action: legal_action,
+        partial_payment: partial_payment,
+        fresh_cash_advance: fresh_cash_advance,
+      }
+    )
 ```
 
 ### Supported Data

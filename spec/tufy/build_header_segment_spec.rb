@@ -7,7 +7,7 @@ module Tufy
     let(:user_id) { "BB030" }
     let(:date_today) { Date.today }
 
-    let(:raw_data) do
+    let(:header_data) do
       {
         member_reference_number: member_reference_number,
         processor_name: processor_name,
@@ -17,7 +17,7 @@ module Tufy
 
     let(:ctx) do
       {
-        raw_data: raw_data,
+        header_data: header_data,
         transformed_data: "",
       }
     end
@@ -32,6 +32,10 @@ module Tufy
         BuildHeaderSegment::Constants::FILLER  # Filler (Required)
     end
 
+    before :each do
+      allow(Time).to receive_message_chain(:now, :to_i, :to_s).and_return(member_reference_number)
+    end
+
     context "no error" do
       it "executes the action" do
         result = described_class.execute(ctx)
@@ -42,7 +46,7 @@ module Tufy
     context "with error" do
       BuildHeaderSegment::REQUIRED_KEYS.each do |required_key|
         before(:each) do
-          raw_data.delete(required_key)
+          header_data.delete(required_key)
         end
 
         it "executes the action" do
