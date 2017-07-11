@@ -18,13 +18,12 @@ module Tufy
     def self.transform(ctx)
       raw_data = ctx[:raw_data]
 
-      Constants::SEGMENT_TAG + # Segment Tag (Required)
-        Constants::CONTACT_NUMBER_TAG +
-          FormatStrings::F2TS % remove_special_characters(raw_data[:contact_number]).size +
-            remove_special_characters(raw_data[:contact_number]) + # Contact Number (Required)
-        Constants::CONTACT_NUMBER_FORMAT_TAG +
-          FormatStrings::F2TS % raw_data[:contact_number_format].size +
-            raw_data[:contact_number_format] # Contact Number Format (Required)
+      result = with(ctx).reduce(
+        Fields::ContactNumber::BuildContactNumberField,
+        Fields::ContactNumber::BuildContactNumberFormatField,
+      )
+
+      Constants::SEGMENT_TAG + result[:transformed_data]
     end
 
     module Constants

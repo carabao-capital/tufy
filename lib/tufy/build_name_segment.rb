@@ -22,25 +22,16 @@ module Tufy
     def self.transform(ctx)
       raw_data = ctx[:raw_data]
 
-      Constants::SEGMENT_TAG + # Segment Tag (Required)
-        Constants::FIRST_NAME_TAG +
-          FormatStrings::F2TS % raw_data[:first_name].size +
-            raw_data[:first_name] + # First Name (Required)
-        Constants::LAST_NAME_TAG +
-          FormatStrings::F2TS % raw_data[:last_name].size +
-            raw_data[:last_name] + # Last Name (Required)
-        Constants::CIVIL_STATUS_TAG +
-          FormatStrings::F2TS % raw_data[:civil_status].size +
-            raw_data[:civil_status] + # Civil Status (Required)
-        Constants::DATE_OF_BIRTH_TAG +
-          FormatStrings::F2TS % transform_date(raw_data[:date_of_birth]).size +
-            transform_date(raw_data[:date_of_birth]) + # Date of Birth (Required)
-        Constants::GENDER_TAG +
-          FormatStrings::F2TS % raw_data[:gender].size +
-            raw_data[:gender] + # Gender (Required)
-        Constants::AC_HOLDER_TYPE_TAG +
-          FormatStrings::F2TS % raw_data[:ac_holder_type].size +
-            raw_data[:ac_holder_type] # A/C Holder Type
+      result = with(ctx).reduce(
+        Fields::Name::BuildFirstNameField,
+        Fields::Name::BuildLastNameField,
+        Fields::Name::BuildCivilStatusField,
+        Fields::Name::BuildDateOfBirthField,
+        Fields::Name::BuildGenderField,
+        Fields::Name::BuildAcHolderTypeField,
+      )
+
+      Constants::SEGMENT_TAG + result[:transformed_data]
     end
 
     module Constants
