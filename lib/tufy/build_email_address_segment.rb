@@ -17,10 +17,9 @@ module Tufy
     def self.transform(ctx)
       raw_data = ctx[:raw_data]
 
-      Constants::SEGMENT_TAG + # Segment Tag (Required)
-        Constants::EMAIL_ADDRESS_TAG +
-          FormatStrings::F2TS % raw_data[:email_address].size +
-            raw_data[:email_address] # Email Address (Required)
+      result = Fields::EmailAddress::BuildEmailAddressField.execute(ctx)
+
+      Constants::SEGMENT_TAG + result[:transformed_data]
     end
 
     module Constants
