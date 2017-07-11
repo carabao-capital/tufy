@@ -49,6 +49,8 @@ require "tufy/fields/address/build_address_type_field.rb"
 require "tufy/fields/contact_number/build_contact_number_field.rb"
 require "tufy/fields/contact_number/build_contact_number_format_field.rb"
 require "tufy/fields/email_address/build_email_address_field.rb"
+require "tufy/fields/id/build_id_number_field.rb"
+require "tufy/fields/id/build_id_type_field.rb"
 
 module Tufy
   def self.transform_raw_data(raw_data)

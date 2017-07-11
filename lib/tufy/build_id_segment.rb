@@ -24,13 +24,12 @@ module Tufy
     def self.transform(ctx)
       raw_data = ctx[:raw_data]
 
-      Constants::SEGMENT_TAG + # Segment Tag (Required)
-        Constants::ID_NUMBER_TAG +
-          FormatStrings::F2TS % remove_special_characters(raw_data[:id_number]).size +
-            remove_special_characters(raw_data[:id_number]) + # ID Number (Required)
-        Constants::ID_TYPE_TAG +
-          FormatStrings::F2TS % raw_data[:id_type].size +
-            raw_data[:id_type] # ID Type (Required)
+      result = with(ctx).reduce(
+        Fields::Id::BuildIdNumberField,
+        Fields::Id::BuildIdTypeField,
+      )
+
+      Constants::SEGMENT_TAG + result[:transformed_data]
     end
 
     def self.id_type_exists?(id_type)
