@@ -1,3 +1,7 @@
+# v0.0.7
+
+- Refactor each BuildSegment actions to be LightService::Organizers
+
 # v0.0.6
 
 - Added Tufy.transform_raw_data_array and refactor Tufy.transform
