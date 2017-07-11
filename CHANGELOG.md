@@ -1,3 +1,10 @@
+# v0.0.8
+
+- PARTIAL PAYMENT is now an optional field
+- FRESH CASH ADVANCE is now an optional field
+- UNBILLED_BALANCE is now an optional field
+- CASH_ADVANCE_BALANCE is now an optional field
+
 # v0.0.7
 
 - Refactor each BuildSegment actions to be LightService::Organizers
