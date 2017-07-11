@@ -7,8 +7,7 @@ module Tufy
       :account_number,
       :restructured_account_number,
       :user_id,
-      :account_status,
-      :account_type,
+      :account_status, :account_type,
       :currency_code,
       :opened_date,
       :payment_amount,
@@ -50,61 +49,36 @@ module Tufy
     private
 
     def self.transform(ctx)
-      raw_data = ctx[:raw_data]
+      result = with(ctx).reduce(
+        Fields::Account::BuildAccountNumberField,
+        Fields::Account::BuildRestructuredAccountNumberField,
+        Fields::Account::BuildUserIdField,
+        Fields::Account::BuildAccountStatusField,
+        Fields::Account::BuildAccountTypeField,
+        Fields::Account::BuildCurrencyCodeField,
+        Fields::Account::BuildOpenedDateField,
+        Fields::Account::BuildPaymentAmountField,
+        Fields::Account::BuildClosedDateField,
+        Fields::Account::BuildReportedDateField,
+        Fields::Account::BuildCreditLimitOrLoanAmountField,
+        Fields::Account::BuildSharedByField,
+        Fields::Account::BuildOutstandingBalanceField,
+        Fields::Account::BuildInterestAndFeesField,
+        Fields::Account::BuildUnbilledBalanceField,
+        Fields::Account::BuildCashAdvanceBalanceField,
+        Fields::Account::BuildNumberOfDaysPastDueField,
+        Fields::Account::BuildPastDueAmountField,
+        Fields::Account::BuildInstallmentAmountField,
+        Fields::Account::BuildNumberOfInstallmentsField,
+        Fields::Account::BuildPaymentFrequencyField,
+        Fields::Account::BuildExpiryDateField,
+        Fields::Account::BuildConsumerOrCommercialField,
+        Fields::Account::BuildLegalActionField,
+        Fields::Account::BuildPartialPaymentField,
+        Fields::Account::BuildFreshCashAdvanceField,
+      )
 
-      Constants::SEGMENT_TAG +
-        Constants::ACCOUNT_NUMBER_TAG +
-        FormatStrings::F2TS % raw_data[:account_number].to_s.size + raw_data[:account_number].to_s +
-        Constants::RESTRUCTURED_ACCOUNT_NUMBER_TAG +
-          FormatStrings::F2TS % raw_data[:restructured_account_number].to_s.size + raw_data[:restructured_account_number].to_s +
-        Constants::USER_ID_TAG +
-          FormatStrings::F2TS % raw_data[:user_id].size + raw_data[:user_id] +
-        Constants::ACCOUNT_STATUS_TAG +
-          FormatStrings::F2TS % raw_data[:account_status].size + raw_data[:account_status] +
-        Constants::ACCOUNT_TYPE_TAG +
-          FormatStrings::F2TS % raw_data[:account_type].size + raw_data[:account_type] +
-        Constants::CURRENCY_CODE_TAG +
-          FormatStrings::F2TS % raw_data[:currency_code].size + raw_data[:currency_code] +
-        Constants::OPENED_DATE_TAG +
-          FormatStrings::F2TS % transform_date(raw_data[:opened_date]).size + transform_date(raw_data[:opened_date]) +
-        Constants::PAYMENT_AMOUNT_TAG +
-          FormatStrings::F2TS % raw_data[:payment_amount].to_i.to_s.size + raw_data[:payment_amount].to_i.to_s +
-        Constants::CLOSED_DATE_TAG +
-          FormatStrings::F2TS % transform_date(raw_data[:closed_date]).size + transform_date(raw_data[:closed_date]) +
-        Constants::REPORTED_DATE_TAG +
-          FormatStrings::F2TS % transform_date(DateTime.now).size + transform_date(DateTime.now) +
-        Constants::CREDIT_LIMIT_OR_LOAN_AMOUNT_TAG +
-          FormatStrings::F2TS % raw_data[:credit_limit_or_loan_amount].to_i.to_s.size + raw_data[:credit_limit_or_loan_amount].to_i.to_s +
-        Constants::SHARED_BY_TAG +
-          FormatStrings::F2TS % raw_data[:shared_by].size + raw_data[:shared_by] +
-        Constants::OUTSTANDING_BALANCE_TAG +
-          FormatStrings::F2TS % raw_data[:outstanding_balance].to_i.to_s.size + raw_data[:outstanding_balance].to_i.to_s +
-        Constants::INTEREST_AND_FEES_TAG +
-          FormatStrings::F2TS % raw_data[:interest_and_fees].to_i.to_s.size + raw_data[:interest_and_fees].to_i.to_s +
-        Constants::UNBILLED_BALANCE_TAG +
-          FormatStrings::F2TS % raw_data[:unbilled_balance].to_i.to_s.size + raw_data[:unbilled_balance].to_i.to_s +
-        Constants::CASH_ADVANCE_BALANCE_TAG +
-          FormatStrings::F2TS % raw_data[:cash_advance_balance].to_i.to_s.size + raw_data[:cash_advance_balance].to_i.to_s +
-        Constants::NUMBER_OF_DAYS_PAST_DUE_TAG +
-          FormatStrings::F2TS % (FormatStrings::F3TS % raw_data[:number_of_days_past_due]).size + FormatStrings::F3TS % raw_data[:number_of_days_past_due] +
-        Constants::PAST_DUE_AMOUNT_TAG +
-          FormatStrings::F2TS % raw_data[:past_due_amount].to_i.to_s.size + raw_data[:past_due_amount].to_i.to_s +
-        Constants::INSTALLMENT_AMOUNT_TAG +
-          FormatStrings::F2TS % raw_data[:installment_amount].to_i.to_s.size + raw_data[:installment_amount].to_i.to_s +
-        Constants::NUMBER_OF_INSTALLMENTS_TAG +
-          FormatStrings::F2TS % raw_data[:number_of_installments].to_i.to_s.size + raw_data[:number_of_installments].to_i.to_s +
-        Constants::PAYMENT_FREQUENCY_TAG +
-          FormatStrings::F2TS % raw_data[:payment_frequency].size + raw_data[:payment_frequency] +
-        Constants::EXPIRY_DATE_TAG +
-          FormatStrings::F2TS % transform_date(raw_data[:expiry_date]).size + transform_date(raw_data[:expiry_date]) +
-        Constants::CONSUMER_OR_COMMERCIAL_TAG +
-          FormatStrings::F2TS % raw_data[:consumer_or_commercial].size + raw_data[:consumer_or_commercial] +
-        Constants::LEGAL_ACTION_TAG +
-          FormatStrings::F2TS % raw_data[:legal_action].size + raw_data[:legal_action] +
-        Constants::PARTIAL_PAYMENT_TAG +
-          FormatStrings::F2TS % raw_data[:partial_payment].size + raw_data[:partial_payment] +
-        Constants::FRESH_CASH_ADVANCE_TAG +
-          FormatStrings::F2TS % raw_data[:fresh_cash_advance].size + raw_data[:fresh_cash_advance]
+      Constants::SEGMENT_TAG + result[:transformed_data]
     end
 
     module Constants
