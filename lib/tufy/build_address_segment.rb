@@ -19,16 +19,13 @@ module Tufy
     def self.transform(ctx)
       raw_data = ctx[:raw_data]
 
-      Constants::SEGMENT_TAG + # Segment Tag (Required)
-        Constants::ADDRESS_LINE_1_TAG +
-          FormatStrings::F2TS % remove_special_characters(raw_data[:address_line_1]).size +
-            remove_special_characters(raw_data[:address_line_1]) + # Address Line 1 (Required)
-        Constants::ADDRESS_LINE_2_TAG +
-          FormatStrings::F2TS % remove_special_characters(raw_data[:address_line_2]).size +
-            remove_special_characters(raw_data[:address_line_2]) + # Address Line 2 (Required)
-        Constants::ADDRESS_TYPE_TAG +
-          FormatStrings::F2TS % raw_data[:address_type].size +
-            raw_data[:address_type] # Address Type (Required)
+      result = with(ctx).reduce(
+        Fields::Address::BuildAddress1Field,
+        Fields::Address::BuildAddress2Field,
+        Fields::Address::BuildAddressTypeField,
+      )
+
+      Constants::SEGMENT_TAG + result[:transformed_data]
     end
 
     module Constants

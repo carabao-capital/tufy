@@ -43,6 +43,9 @@ require "tufy/fields/account/build_restructured_account_number_field.rb"
 require "tufy/fields/account/build_shared_by_field.rb"
 require "tufy/fields/account/build_unbilled_balance_field.rb"
 require "tufy/fields/account/build_user_id_field.rb"
+require "tufy/fields/address/build_address_1_field.rb"
+require "tufy/fields/address/build_address_2_field.rb"
+require "tufy/fields/address/build_address_type_field.rb"
 
 module Tufy
   def self.transform_raw_data(raw_data)
