@@ -6,9 +6,11 @@ module Tufy
         promises :transformed_data
 
         executed do |ctx|
-          ctx.transformed_data =
-            ctx.transformed_data +
-            transform(ctx).upcase
+          if ctx.raw_data[:fresh_cash_advance]
+            ctx.transformed_data =
+              ctx.transformed_data +
+              transform(ctx).upcase
+          end
         end
 
         private

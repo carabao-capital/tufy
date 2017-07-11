@@ -16,8 +16,6 @@ module Tufy
       :shared_by,
       :outstanding_balance,
       :interest_and_fees,
-      :unbilled_balance,
-      :cash_advance_balance,
       :number_of_days_past_due,
       :past_due_amount,
       :installment_amount,
@@ -26,8 +24,6 @@ module Tufy
       :expiry_date,
       :consumer_or_commercial,
       :legal_action,
-      :partial_payment,
-      :fresh_cash_advance,
     ]
 
     executed do |ctx|
