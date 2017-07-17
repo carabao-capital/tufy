@@ -17,8 +17,8 @@ module Tufy
           raw_data = ctx.raw_data
 
           BuildAddressSegment::Constants::ADDRESS_LINE_2_TAG +
-            FormatStrings::F2TS % remove_special_characters(raw_data[:address_line_2]).size +
-              remove_special_characters(raw_data[:address_line_2])
+            FormatStrings::F2TS % remove_special_characters_except_space(raw_data[:address_line_2]).size +
+              remove_special_characters_except_space(raw_data[:address_line_2])
         end
       end
     end
