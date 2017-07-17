@@ -32,8 +32,8 @@ module Tufy
       }
     end
 
-    let(:account_number) { "1" }
-    let(:restructured_account_number) { "1" }
+    let(:account_number) { "00000000000000000001" }
+    let(:restructured_account_number) { "00000000000000000001" }
     let(:user_id) { "BB030" }
     let(:account_status) { BuildAccountSegment::Constants::ACTIVE_OR_OPEN }
     let(:account_type) { BuildAccountSegment::Constants::SECURED_PERSONAL_LOAN }

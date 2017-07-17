@@ -15,21 +15,22 @@ module Tufy
       # TODO: Testing
       validate_presence_of_required_keys(ctx.raw_data, REQUIRED_KEYS)
       if id_type_exists?(ctx.raw_data[:id_type])
-        ctx.transformed_data = ctx.transformed_data + transform(ctx).upcase
+        ctx.transformed_data = transform(ctx).upcase
       end
     end
 
     private
 
     def self.transform(ctx)
-      raw_data = ctx[:raw_data]
+      ctx[:segment_tag] = Constants::SEGMENT_TAG
 
       result = with(ctx).reduce(
+        Fields::BuildSegmentTagField,
         Fields::Id::BuildIdNumberField,
         Fields::Id::BuildIdTypeField,
       )
 
-      Constants::SEGMENT_TAG + result[:transformed_data]
+      result[:transformed_data]
     end
 
     def self.id_type_exists?(id_type)

@@ -24,11 +24,11 @@ module Tufy
     let(:expected_data) do
       BuildAddressSegment::Constants::SEGMENT_TAG +
         BuildAddressSegment::Constants::ADDRESS_LINE_1_TAG +
-        "#{FormatStrings::F2TS % address_line_1.gsub(/[^0-9A-Za-z]/, '').size}" +
-          "#{address_line_1.gsub(/[^0-9A-Za-z]/, '').upcase}" +
+        "#{FormatStrings::F2TS % address_line_1.gsub(/[^0-9A-Za-z. ]/, '').size}" +
+          "#{address_line_1.gsub(/[^0-9A-Za-z. ]/, '').upcase}" +
         BuildAddressSegment::Constants::ADDRESS_LINE_2_TAG +
-          "#{FormatStrings::F2TS % address_line_2.gsub(/[^0-9A-Za-z]/, '').size}" +
-            "#{address_line_2.gsub(/[^0-9A-Za-z]/, '').upcase}" +
+          "#{FormatStrings::F2TS % address_line_2.gsub(/[^0-9A-Za-z. ]/, '').size}" +
+            "#{address_line_2.gsub(/[^0-9A-Za-z. ]/, '').upcase}" +
         BuildAddressSegment::Constants::ADDRESS_TYPE_TAG +
           "#{FormatStrings::F2TS % address_type.size}#{address_type.upcase}"
     end
