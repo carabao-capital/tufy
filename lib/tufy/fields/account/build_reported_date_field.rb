@@ -6,9 +6,11 @@ module Tufy
         promises :transformed_data
 
         executed do |ctx|
-          ctx.transformed_data =
-            ctx.transformed_data +
-            transform(ctx).upcase
+          if ctx.raw_data[:reported_date]
+            ctx.transformed_data =
+              ctx.transformed_data +
+              transform(ctx).upcase
+          end
         end
 
         private
@@ -18,7 +20,7 @@ module Tufy
 
           BuildAccountSegment::Constants::REPORTED_DATE_TAG +
             FormatStrings::F2TS % transform_date(DateTime.now).size +
-            transform_date(DateTime.now)
+              transform_date(DateTime.now)
         end
       end
     end

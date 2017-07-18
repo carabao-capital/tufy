@@ -2,6 +2,9 @@ require "spec_helper"
 
 module Tufy
   describe BuildAccountSegment, ".execute" do
+    let(:date_now) {
+      DateTime.now
+    }
     let(:raw_data) do
       {
         account_number: account_number,
@@ -13,6 +16,7 @@ module Tufy
         opened_date: opened_date,
         payment_amount: payment_amount,
         closed_date: closed_date,
+        reported_date: reported_date,
         credit_limit_or_loan_amount: credit_limit_or_loan_amount,
         shared_by: shared_by,
         outstanding_balance: outstanding_balance,
@@ -41,7 +45,7 @@ module Tufy
     let(:opened_date) { DateTime.now - 28 }
     let(:payment_amount) { 200000 }
     let(:closed_date) { DateTime.now + 14 }
-    let(:reported_date) { DateTime.now }
+    let(:reported_date) { date_now }
     let(:credit_limit_or_loan_amount) { 400000 }
     let(:shared_by) { BuildAccountSegment::Constants::SHARED_BY_1 }
     let(:outstanding_balance) { 200000 }
