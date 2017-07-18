@@ -9,22 +9,25 @@ module Tufy
 
     executed do |ctx|
       validate_presence_of_required_keys(ctx.raw_data, REQUIRED_KEYS)
-      ctx.transformed_data = ctx.transformed_data + transform(ctx).upcase
+      ctx.transformed_data = transform(ctx).upcase
     end
 
     private
 
     def self.transform(ctx)
-      raw_data = ctx[:raw_data]
+      ctx[:segment_tag] = Constants::SEGMENT_TAG
 
-      result = Fields::EmailAddress::BuildEmailAddressField.execute(ctx)
+      result = with(ctx).reduce(
+        Fields::BuildSegmentTagField,
+        Fields::EmailAddress::BuildEmailAddressField,
+      )
 
-      Constants::SEGMENT_TAG + result[:transformed_data]
+      result[:transformed_data]
     end
 
     module Constants
       # tags
-      SEGMENT_TAG = "ID03I01"
+      SEGMENT_TAG = "EA03E01"
       EMAIL_ADDRESS_TAG = "01"
     end
   end

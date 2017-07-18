@@ -14,15 +14,16 @@ module Tufy
 
     executed do |ctx|
       validate_presence_of_required_keys(ctx.raw_data, REQUIRED_KEYS)
-      ctx.transformed_data = ctx.transformed_data + transform(ctx).upcase
+      ctx.transformed_data = transform(ctx).upcase
     end
 
     private
 
     def self.transform(ctx)
-      raw_data = ctx[:raw_data]
+      ctx[:segment_tag] = Constants::SEGMENT_TAG
 
       result = with(ctx).reduce(
+        Fields::BuildSegmentTagField,
         Fields::Name::BuildFirstNameField,
         Fields::Name::BuildLastNameField,
         Fields::Name::BuildCivilStatusField,
@@ -31,7 +32,7 @@ module Tufy
         Fields::Name::BuildAcHolderTypeField,
       )
 
-      Constants::SEGMENT_TAG + result[:transformed_data]
+      result[:transformed_data]
     end
 
     module Constants

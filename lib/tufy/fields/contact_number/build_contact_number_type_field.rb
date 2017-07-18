@@ -1,7 +1,7 @@
 module Tufy
   module Fields
-    module Address
-      class BuildAddress2Field < BuildField
+    module ContactNumber
+      class BuildContactNumberTypeField < BuildField
         expects :raw_data
         promises :transformed_data
 
@@ -16,9 +16,9 @@ module Tufy
         def self.transform(ctx)
           raw_data = ctx.raw_data
 
-          BuildAddressSegment::Constants::ADDRESS_LINE_2_TAG +
-            FormatStrings::F2TS % remove_special_characters_except_space(raw_data[:address_line_2]).size +
-              remove_special_characters_except_space(raw_data[:address_line_2])
+          BuildContactNumberSegment::Constants::CONTACT_NUMBER_TYPE_TAG +
+            FormatStrings::F2TS % raw_data[:contact_number_type].size +
+              raw_data[:contact_number_type]
         end
       end
     end

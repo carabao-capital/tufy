@@ -11,7 +11,6 @@ module Tufy
       :currency_code,
       :opened_date,
       :payment_amount,
-      :closed_date,
       :credit_limit_or_loan_amount,
       :shared_by,
       :outstanding_balance,
@@ -28,7 +27,7 @@ module Tufy
 
     executed do |ctx|
       validate_presence_of_required_keys(ctx.raw_data, REQUIRED_KEYS)
-      ctx.transformed_data = ctx.transformed_data + transform(ctx).upcase
+      ctx.transformed_data = transform(ctx).upcase
     end
 
     def self.past_due_code(days_past_due)
@@ -45,7 +44,10 @@ module Tufy
     private
 
     def self.transform(ctx)
+      ctx[:segment_tag] = Constants::SEGMENT_TAG
+
       result = with(ctx).reduce(
+        Fields::BuildSegmentTagField,
         Fields::Account::BuildAccountNumberField,
         Fields::Account::BuildRestructuredAccountNumberField,
         Fields::Account::BuildUserIdField,
@@ -74,7 +76,7 @@ module Tufy
         Fields::Account::BuildFreshCashAdvanceField,
       )
 
-      Constants::SEGMENT_TAG + result[:transformed_data]
+      result[:transformed_data]
     end
 
     module Constants

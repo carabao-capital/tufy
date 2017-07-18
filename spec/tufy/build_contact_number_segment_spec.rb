@@ -6,11 +6,13 @@ module Tufy
       {
         contact_number: contact_number,
         contact_number_format: contact_number_format,
+        contact_number_type: contact_number_type,
       }
     end
 
     let(:contact_number) { "+639987903951" }
     let(:contact_number_format) { BuildContactNumberSegment::Constants::FREE_FORMAT }
+    let(:contact_number_type) { BuildContactNumberSegment::Constants::UNKNOWN }
 
     let(:ctx) do
       {
@@ -24,7 +26,9 @@ module Tufy
         BuildContactNumberSegment::Constants::CONTACT_NUMBER_TAG +
         "#{FormatStrings::F2TS % contact_number.gsub(/[^0-9A-Za-z]/, '').size}#{contact_number.gsub(/[^0-9A-Za-z]/, '')}" +
         BuildContactNumberSegment::Constants::CONTACT_NUMBER_FORMAT_TAG +
-          "#{FormatStrings::F2TS % contact_number_format.size}#{contact_number_format.upcase}"
+          "#{FormatStrings::F2TS % contact_number_format.size}#{contact_number_format.upcase}" +
+        BuildContactNumberSegment::Constants::CONTACT_NUMBER_TYPE_TAG +
+          "#{FormatStrings::F2TS % contact_number_type.size}#{contact_number_type.upcase}"
     end
 
     context "no error" do

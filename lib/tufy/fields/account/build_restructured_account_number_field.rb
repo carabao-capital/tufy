@@ -17,8 +17,8 @@ module Tufy
           raw_data = ctx.raw_data
 
           BuildAccountSegment::Constants::RESTRUCTURED_ACCOUNT_NUMBER_TAG +
-            FormatStrings::F2TS % raw_data[:restructured_account_number].to_s.size +
-            raw_data[:restructured_account_number].to_s
+            FormatStrings::F2TS % (FormatStrings::F20TS % raw_data[:restructured_account_number]).to_s.size +
+              FormatStrings::F20TS % raw_data[:restructured_account_number].to_s
         end
       end
     end
