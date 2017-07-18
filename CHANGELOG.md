@@ -1,3 +1,14 @@
+# v0.0.9
+
+- Fix Address segment tag
+- Fix Email Address segment tag
+- Add Contact number type field
+- Do not remove spaces from the address
+- Pad the `account_number` and `restructured_account_number` with leading zeros
+- Zero if outstanding_balance is negative
+- "0000000000" if `contact_number` is `.empty?`
+- Make the reported date field not required
+
 # v0.0.8
 
 - PARTIAL PAYMENT is now an optional field
