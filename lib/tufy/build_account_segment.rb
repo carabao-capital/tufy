@@ -11,7 +11,6 @@ module Tufy
       :currency_code,
       :opened_date,
       :payment_amount,
-      :closed_date,
       :credit_limit_or_loan_amount,
       :shared_by,
       :outstanding_balance,
