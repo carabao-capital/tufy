@@ -6,6 +6,7 @@ module Tufy
     REQUIRED_KEYS = [
       :contact_number,
       :contact_number_format,
+      :contact_number_type,
     ]
 
     executed do |ctx|
@@ -22,6 +23,7 @@ module Tufy
         Fields::BuildSegmentTagField,
         Fields::ContactNumber::BuildContactNumberField,
         Fields::ContactNumber::BuildContactNumberFormatField,
+        Fields::ContactNumber::BuildContactNumberTypeField,
       )
 
       result[:transformed_data]
@@ -32,10 +34,17 @@ module Tufy
       SEGMENT_TAG = "PH03P01"
       CONTACT_NUMBER_TAG = "03"
       CONTACT_NUMBER_FORMAT_TAG = "05"
+      CONTACT_NUMBER_TYPE_TAG = "06"
 
       # contact number format constants
       FREE_FORMAT = "F"
       STRUCTURED_FORMAT = "S"
+
+      RESIDENTIAL = "R"
+      OFFICE = "O"
+      MOBILE = "M"
+      CORRESPONDENCE_OR_CONTACT = "C"
+      UNKNOWN = "U"
     end
   end
 end
