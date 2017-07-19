@@ -112,6 +112,10 @@ module Tufy
 
       # account status constants
       ACTIVE_OR_OPEN = "A"
+      RESTRUCTURED = "C"
+      BLOCKED_DUE_TO_CREDIT = "BC"
+      VOLUNTARY_CLOSED = "CV"
+      WRITE_OFF = "W"
 
       # account type constants
       SECURED_PERSONAL_LOAN = "3100"
