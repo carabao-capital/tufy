@@ -7,7 +7,8 @@ module Tufy
       :account_number,
       :restructured_account_number,
       :user_id,
-      :account_status, :account_type,
+      :account_status,
+      :account_type,
       :currency_code,
       :opened_date,
       :payment_amount,
@@ -111,6 +112,10 @@ module Tufy
 
       # account status constants
       ACTIVE_OR_OPEN = "A"
+      RESTRUCTURED = "C"
+      BLOCKED_DUE_TO_CREDIT = "BC"
+      VOLUNTARY_CLOSED = "CV"
+      WRITE_OFF = "W"
 
       # account type constants
       SECURED_PERSONAL_LOAN = "3100"
