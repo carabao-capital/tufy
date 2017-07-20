@@ -1,3 +1,8 @@
+# v0.0.10
+
+- Added account status constants
+- Zero if interest_and_fees is negative
+
 # v0.0.9
 
 - Fix Address segment tag
