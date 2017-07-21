@@ -17,8 +17,8 @@ module Tufy
           raw_data = ctx.raw_data
 
           BuildNameSegment::Constants::LAST_NAME_TAG +
-            FormatStrings::F2TS % raw_data[:last_name].size +
-              raw_data[:last_name]
+            FormatStrings::F2TS % remove_special_characters_except_space(raw_data[:last_name]).size +
+              remove_special_characters_except_space(raw_data[:last_name])
         end
       end
     end
