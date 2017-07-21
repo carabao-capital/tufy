@@ -1,3 +1,8 @@
+# v0.0.11
+
+- Remove special characters from First and Last names
+- Fix: negative interest and fees must be zero
+
 # v0.0.10
 
 - Added account status constants
