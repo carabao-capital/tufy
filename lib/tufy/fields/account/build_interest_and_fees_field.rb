@@ -21,7 +21,7 @@ module Tufy
 
           BuildAccountSegment::Constants::INTEREST_AND_FEES_TAG +
             FormatStrings::F2TS % interest_and_fees.to_s.size +
-              raw_data[:interest_and_fees].to_s
+              interest_and_fees.to_s
         end
       end
     end
