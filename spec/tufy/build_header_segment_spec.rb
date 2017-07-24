@@ -5,13 +5,14 @@ module Tufy
     let(:member_reference_number) { "A1234" }
     let(:processor_name) { "Company Name" }
     let(:user_id) { "BB030" }
-    let(:date_today) { Date.today }
+    let(:reported_date) { Date.today }
 
     let(:header_data) do
       {
         member_reference_number: member_reference_number,
         processor_name: processor_name,
         user_id: user_id,
+        reported_date: reported_date,
       }
     end
 
@@ -28,7 +29,7 @@ module Tufy
         "#{FormatStrings::F25TS % member_reference_number}" + # Member Reference Number (Required)
         "#{FormatStrings::F26TS % processor_name.upcase}" + # Member Processor Name (Required)
         "#{FormatStrings::F10TS % user_id}" + # User ID (Required)
-        "#{date_today.strftime("%d%m%Y")}" + # Reported Date (Required)
+        "#{reported_date.strftime("%d%m%Y")}" + # Reported Date (Required)
         BuildHeaderSegment::Constants::FILLER  # Filler (Required)
     end
 

@@ -5,7 +5,8 @@ module Tufy
 
     REQUIRED_KEYS = [
       :processor_name,
-      :user_id
+      :user_id,
+      :reported_date,
     ]
 
     executed do |ctx|
@@ -21,7 +22,7 @@ module Tufy
         "#{FormatStrings::F25TS % Time.now.to_i.to_s}" + # Member Reference Number (Required)
         "#{FormatStrings::F26TS % ctx.header_data[:processor_name].upcase}" + # Member Processor Name (Required)
         "#{FormatStrings::F10TS % ctx.header_data[:user_id].upcase}" + # User ID (Required)
-        "#{BuildField.transform_date(Date.today)}" + # Reported Date (Required)
+        "#{BuildField.transform_date(ctx.header_data[:reported_date])}" + # Reported Date (Required)
         Constants::FILLER # Filler (Required)
     end
 
