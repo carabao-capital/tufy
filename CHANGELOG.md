@@ -1,3 +1,7 @@
+# v0.0.12
+
+- Make reported_date as a required parameter of Tufy::BuildHeaderSegment
+
 # v0.0.11
 
 - Remove special characters from First and Last names
