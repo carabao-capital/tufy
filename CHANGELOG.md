@@ -1,3 +1,7 @@
+# v0.0.13
+
+- Add BuildAccountSegment::UNSECURED_PERSONAL_LOAN
+
 # v0.0.12
 
 - Make reported_date as a required parameter of Tufy::BuildHeaderSegment
