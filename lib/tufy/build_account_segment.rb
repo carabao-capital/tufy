@@ -119,6 +119,7 @@ module Tufy
 
       # account type constants
       SECURED_PERSONAL_LOAN = "3100"
+      UNSECURED_PERSONAL_LOAN = "3000"
 
       # currency code constants
       PHP = "PHP"
