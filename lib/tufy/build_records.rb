@@ -1,6 +1,6 @@
 module Tufy
   class BuildRecords
-    include LightService::Action
+    extend LightService::Action
 
     expects :raw_data_array, :transformed_data
     promises :transformed_data

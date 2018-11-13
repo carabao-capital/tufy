@@ -1,7 +1,7 @@
 module Tufy
   class BuildSegment
-    include LightService::Action
-    include LightService::Organizer
+    extend LightService::Action
+    extend LightService::Organizer
 
     protected
 

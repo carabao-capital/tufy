@@ -1,6 +1,6 @@
 module Tufy
   class BuildRecord
-    include LightService::Organizer
+    extend LightService::Organizer
 
     def self.execute(ctx)
       ctx[:transformed_data] = ''
