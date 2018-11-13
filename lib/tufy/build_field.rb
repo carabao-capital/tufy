@@ -1,6 +1,6 @@
 module Tufy
   class BuildField
-    include LightService::Action
+    extend LightService::Action
 
     protected
 

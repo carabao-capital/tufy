@@ -1,3 +1,7 @@
+# TBA
+
+- Remove deprecation warnings caused by including LightService::Action
+
 # v0.0.13
 
 - Add BuildAccountSegment::UNSECURED_PERSONAL_LOAN
